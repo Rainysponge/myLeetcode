@@ -32,13 +32,13 @@ class Solution(object):
         # if b == 2:
         #     return 3**a*2
         
-        # dp
+        # dp 
         dp = [0, 0, 1, 2, 4, 6, 9]
         if n >= 7:
             for i in range(7, n + 1):
                 dp.append(dp[i - 3] * 3)
         return dp[n]
-
+        # 总的来说这是一道数学题 __+__
         
 
 # @lc code=end

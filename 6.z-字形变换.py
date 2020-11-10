@@ -41,6 +41,7 @@ class Solution:
         #         else:
         #             res += graph[i][j]
         # return res
+        # 每次循环头尾都比中间少加一次
         if numRows==1 or numRows>=len(s) :return s
         r,j,k=['']*numRows,0,1
         for i in s:

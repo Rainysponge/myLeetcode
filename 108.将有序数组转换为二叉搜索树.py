@@ -14,19 +14,17 @@
 
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        # 20_11_12
         if not nums:
             return None
-        mid = len(nums)//2
+        mid = len(nums) // 2
         root = TreeNode(nums[mid])
-        left_nums = nums[:mid]
-        right_nums = nums[mid+1:]
-        root.left = self.sortedArrayToBST(left_nums)
-        root.right = self.sortedArrayToBST(right_nums)
+        left = nums[:mid]
+        right = nums[mid+1:]
+        root.left = self.sortedArrayToBST(left)
+        root.right = self.sortedArrayToBST(right)
 
         return root
-
-
-
 
 # @lc code=end
 

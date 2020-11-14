@@ -8,5 +8,6 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # 拓扑排序
+        # 20_11_13
 # @lc code=end
 

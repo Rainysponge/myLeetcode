@@ -10,16 +10,49 @@ class Solution:
         if not intervals:
             return 0
         intervals = sorted(intervals)
-        # start = intervals[0][0]
-        end = intervals[0][1]
+        end = intervals[0][1]  # 记录第一个结尾
         res = 0
-        for i in range(1, len(intervals)):
+        m = len(intervals)
+        for i in range(1, m):
             end = min(end, intervals[i][1])
             if end > intervals[i][0]:
                 res += 1
             else:
                 end = intervals[i][1]
+        
         return res
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        # if not intervals:
+        #     return 0
+        # intervals = sorted(intervals)
+        # # start = intervals[0][0]
+        # end = intervals[0][1]
+        # res = 0
+        # for i in range(1, len(intervals)):
+        #     end = min(end, intervals[i][1])
+        #     if end > intervals[i][0]:
+        #         res += 1
+        #     else:
+        #         end = intervals[i][1]
+        # return res
        
                 
 # @lc code=end

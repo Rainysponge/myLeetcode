@@ -41,7 +41,6 @@ class Solution:
             i=len(num)-1
             while i>=0 and num[i][1]>W:
                 i-=1
-            #如果只剩下第一个，则终止循环
             if i<0:
                 break
             W+=num[i][0]

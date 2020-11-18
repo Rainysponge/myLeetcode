@@ -24,7 +24,7 @@ class Solution:
             tmp = min(left_max[i],right_max[i])-height[i]
             if tmp<0:
                 tmp = 0
-            Sum += tmp
+            Sum += tmp 
         return Sum
 
 # @lc code=end

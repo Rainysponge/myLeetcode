@@ -17,19 +17,21 @@ class Solution:
             '8':['t', 'u', 'v'],
             '9':['w', 'x', 'y', 'z']
         }
-        result = []
+        
+        if not digits:
+            return []
+        res = []
         tail = []
-        len_d = len(digits)
-        if len_d == 0:
-            return tail
-        if len_d == 1:
+        m = len(digits)
+        if m == 1:
             return dic[digits]
-        
         tail = self.letterCombinations(digits[1:])
-        
+
         for i in dic[digits[0]]:
             for j in tail:
-                result.append(i+j)
-        return result
+                res.append(i+j)
+
+        return res        
+
 # @lc code=end
 

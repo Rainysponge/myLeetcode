@@ -11,23 +11,29 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        mark = [False]*len(nums)
-        outcome = []
-        curr = []
-        self.core(mark,nums,curr,outcome)
-        return outcome
-
-    def core(self, mark, nums, curr, outcome):
-        if sum(mark)==len(nums):
-            outcome.append(curr[:])
+        res = []
+        if not nums:
+            return[]
+        visited = [False for _ in range(len(nums))]
+        tmp = []
+        self.backtrace(visited, nums, tmp, res)
+        return res
+        
+    def backtrace(self, visited, nums, tmp, res):
+        if sum(visited) == len(nums):
+            res.append(tmp[:])
+            # 浅拷贝
+            return
         for i in range(len(nums)):
-            if mark[i]:
+            if visited[i]:
                 continue
-            curr.append(nums[i])
-            mark[i]=True
-            self.core(mark,nums,curr,outcome)
-            mark[i]=False
-            curr.pop()
+            visited[i] = True
+            tmp.append(nums[i])
+            self.backtrace(visited, nums, tmp, res)
+            visited[i] = False
+            tmp.pop()
+        return
+        
 
 
 # @lc code=end

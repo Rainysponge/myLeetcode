@@ -7,20 +7,18 @@
 # @lc code=start
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        # 哈希表+贪心
-        m = len(nums)
-        if m == 0 or m == 1:
+        if not nums:
             return False
-        hash_table = {}
+        m = len(nums)
+        dic = {}
         for i in range(m):
-            if nums[i] not in hash_table:
-                hash_table[nums[i]] = i
+            if nums[i] not in dic:
+                dic[nums[i]] = i
             else:
-                tmp = i - hash_table[nums[i]]
-                if tmp <= k:
+                if i - dic[nums[i]] <= k:
                     return True
                 else:
-                    hash_table[nums[i]] = i
+                    dic[nums[i]] = i
         return False
 # @lc code=end
 

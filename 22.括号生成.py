@@ -7,41 +7,31 @@
 # @lc code=start
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        """res = []
-        s = '('
-        left_num = 1
-        right_num = 0
-        if n==0:
-            return res
-        def generate(list_f,s,nums,left_num,right_num):
-            if nums == left_num and nums == right_num:
-                list_f.append(s)
-            elif nums == left_num and nums != right_num:
-                s = s + (right_num-left_num)*')'
-                list_f.append(s)
-            
-            else:
-                if left_num == right_num:
-                    s = s + '('
-                    generate(list_f,s,nums,left_num+1,right_num)
-                else:
-                    s = s +'('
-                    generate(list_f,s,nums,left_num+1,right_num)
-                    s = s +')'
-                    generate(list_f,s,nums,left_num,right_num+1)
-        generate(res,s,n,left_num,right_num)
-        return res"""
-        ans = []
-        def backtrack(S = '', left = 0, right = 0):
-            if len(S) == 2 * n:
-                ans.append(S)
-                return
-            if left < n:
-                backtrack(S+'(', left+1, right)
-            if right < left:
-                backtrack(S+')', left, right+1)
+        
+        # ans = []
+        # def backtrack(S = '', left = 0, right = 0):
+        #     if len(S) == 2 * n:
+        #         ans.append(S)
+        #         return
+        #     if left < n:
+        #         backtrack(S+'(', left+1, right)
+        #     if right < left:
+        #         backtrack(S+')', left, right+1)
 
-        backtrack()
-        return ans
+        # backtrack()
+        # return ans
+        res = []
+        self.backtrack('', 0, 0, n, res)
+        return res
+
+
+    def backtrack(self, S, left, right, n, res):
+        if len(S) == 2 * n:
+            res.append(S)
+            return
+        if left < n:
+            self.backtrack(S+'(', left+1, right, n, res)
+        if left > right:
+            self.backtrack(S+')', left, right+1, n, res)
 # @lc code=end
 

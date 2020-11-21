@@ -1,16 +1,15 @@
 #
-# @lc app=leetcode.cn id=207 lang=python3
+# @lc app=leetcode.cn id=210 lang=python3
 #
-# [207] 课程表
+# [210] 课程表 II
 #
 
 # @lc code=start
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        # 拓扑排序
-        # 20_11_13
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         graph = collections.defaultdict(list)
         indegree = collections.defaultdict(int)
+        res = []
         for course, pre in prerequisites:
             # 在pre的位置里加入他的后置课程
             graph[pre].append(course)
@@ -21,14 +20,13 @@ class Solution:
             for j in range(numCourses):
                 if indegree[j] == 0:
                     indegree_is_zero = True
+                    res.append(j)
                     break
             if not indegree_is_zero:
-                return False
+                return []
             indegree[j] -= 1
             for item in graph[j]:
                 indegree[item] -= 1
-        return True 
-
-
+        return res 
 # @lc code=end
 

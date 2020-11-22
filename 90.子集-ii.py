@@ -17,9 +17,6 @@ class Solution:
             for i in range(start, len(nums)):
                 sub_set(i+1, num+[nums[i]])
         sub_set(0,[])
-        # res = set(res)
-        # for i in range(len(res)):
-
         return res
 # @lc code=end
 

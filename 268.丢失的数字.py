@@ -11,6 +11,7 @@ class Solution:
         for i in range(len(nums)):
             res ^= i^nums[i]
         return res
+        # 注意这个i，就是让出现过的数有出现两次的机会
         # return (len(nums)+1)*len(nums)//2 - sum(nums)
         # n = len(nums)
         # return n * (n + 1) //2 - sum(nums)

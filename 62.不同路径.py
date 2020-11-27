@@ -20,16 +20,24 @@ class Solution:
         # 递归 类似于上楼梯，由于方向一定，该问题的解
         # 就是其两个子问题解的和
 
-        dp = [[0 for _ in range(n)] for _ in range (m)]
+        # dp = [[0 for _ in range(n)] for _ in range (m)]
+        # for i in range(m):
+        #     for j in range(n):
+        #         # ac63后，回头修改过
+        #         if i == j == 0:
+        #             dp[i][j] = 1
+        #         else:
+        #             dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        # return dp[-1][-1]
+
+        dp = [[0 for _ in range(n)]for _ in range(m)]
         for i in range(m):
             for j in range(n):
-                # ac63后，回头修改过
                 if i == j == 0:
                     dp[i][j] = 1
                 else:
                     dp[i][j] = dp[i-1][j] + dp[i][j-1]
         return dp[-1][-1]
-
 
 
 

@@ -7,24 +7,6 @@
 # @lc code=start
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        # 第一反应：排列组合可能不方便
-        
-        # m = len(obstacleGrid)
-        # n = len(obstacleGrid[0])
-        # dp = [[0 for _ in range(n)]for _ in range(m)]
-        # if obstacleGrid[0][0] == 0:
-        #             dp[0][0] = 1
-        # for i in range(m):
-        #     for j in range(n):
-        #         if obstacleGrid[i][j] == 1:
-        #             dp[i][j] = 0
-        #         else:
-        #             if i:
-        #                 dp[i][j] += dp[i-1][j]
-        #             if j:
-        #                 dp[i][j] += dp[i][j-1]
-        # return dp[-1][-1]
-        
         # 最快
         # m, n = len(obstacleGrid), len(obstacleGrid[0])
         # dp = [[0] * n for _ in range(m)]

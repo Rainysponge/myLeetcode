@@ -1,16 +1,16 @@
 #
-# @lc app=leetcode.cn id=51 lang=python3
+# @lc app=leetcode.cn id=52 lang=python3
 #
-# [51] N 皇后
+# [52] N皇后 II
 #
 
 # @lc code=start
 class Solution:
-    def solveNQueens(self, n: int) -> List[List[str]]:
+    def totalNQueens(self, n: int) -> int:
         board = [['.'] * n for _ in range(n)]
         res = []
         self.dfs(board, n, 0, res)
-        return res
+        return len(res)
 
     def isAvailable(self, row, col, n, board):
         for i in range(1, row + 1):
@@ -36,7 +36,5 @@ class Solution:
                 board[row][i] = 'Q'
                 self.dfs(board, n, row + 1, res)
                 board[row][i] = '.'
-        
-
 # @lc code=end
 

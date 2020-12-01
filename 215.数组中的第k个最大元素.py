@@ -7,7 +7,14 @@
 # @lc code=start
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        nums.sort()
-        return nums[-k]
+        # nums.sort()
+        # return nums[-k]
+        heapify(nums)  # 该方法没有返回值
+        # res = 0
+        # # while k:
+        # #     k = k - 1
+        # #     res = heappop(nums)
+        return nlargest(k, nums)[-1]
+        # # return nums
 # @lc code=end
 

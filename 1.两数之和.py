@@ -7,14 +7,12 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        nums_hash = {}
-        t = len(nums)
-        l = range(t)
-        for i in l:
-            delta = target - nums[i]
-            if delta in nums_hash:
-                return [nums_hash[delta],i]
-            nums_hash[nums[i]] = i
-        return []
+        hash_table = {}
+        for i in range(len(nums)):
+            tmp = target - nums[i]
+            if nums[i] in hash_table:
+                return [hash_table[nums[i]], i]
+            else:
+                hash_table[tmp] = i
 # @lc code=end
 

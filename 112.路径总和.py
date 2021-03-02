@@ -31,12 +31,11 @@ class Solution:
     #     Sum += root.val
     #     self.dfs(root.left,Sum, List)
     #     self.dfs(root.right, Sum, List)
-        if not root :
+        if not root:
             return False
         sum -= root.val
-        if sum == 0:
-            if not root.left and not root.right:
-                return True
+        if sum == 0 and not root.left and not root.right:
+            return True
         return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
 
 

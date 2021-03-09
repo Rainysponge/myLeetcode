@@ -23,7 +23,23 @@ class Solution:
         # return res
 
 
-        return []  # 有空试试宽搜
+        if not root:
+            return []
+        
+        tmp = [root]
+        res = []
+        while tmp:
+            tmp_root = tmp.pop()
+            res.append(tmp_root.val)
+            
+            if tmp_root.left:
+                tmp.append(tmp_root.left)
+            if tmp_root.right:
+                tmp.append(tmp_root.right)
+        return res[::-1]
+
+
+
 
 
 

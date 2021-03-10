@@ -66,6 +66,7 @@ class Solution:
                 res += sign*num
                 num = 0
                 sign = 1 if c == '+' else -1
+                # 判断正负
             elif c == '(':
                 stack.append(res)
                 stack.append(sign)

@@ -13,20 +13,36 @@
 
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        #这个想法很有意思
-        h = ListNode(0)
-        h.next = head
-        left,right = h,h
+        # #这个想法很有意思
+        # h = ListNode(0)
+        # h.next = head
+        # left,right = h,h
+
+        # for _ in range(n+1):
+        #     left = left.next
+
+        # while left != None:
+        #     left = left.next
+        #     right = right.next
+
+        # right.next = right.next.next
+        # return h.next
+
+        # 0310
+        beforeHead = ListNode(0)
+        beforeHead.next = head
+        fast, slow = beforeHead, beforeHead
 
         for _ in range(n+1):
-            left = left.next
+            fast = fast.next
+        while fast:
+            fast = fast.next
+            slow = slow.next
+        slow.next = slow.next.next
+        return beforeHead.next
 
-        while left != None:
-            left = left.next
-            right = right.next
 
-        right.next = right.next.next
-        return h.next
+
 
 # @lc code=end
 

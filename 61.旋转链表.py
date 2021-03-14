@@ -13,5 +13,34 @@
 
 class Solution:
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        if not head:
+            return None
+        if k == 0:
+            return head
+        res = ListNode(0)
+        res.next = None
+        tmp = res
+
+        nodeList = []
+        while head:
+            nodeList.append(head)
+            head = head.next
+
+        listLen = len(nodeList)
+        k = k % listLen
+        nodeList = nodeList[listLen-k:] + nodeList[:listLen-k]
+        while nodeList:
+            tmp.next = nodeList.pop(0)
+            tmp = tmp.next
+            tmp.next = None
+
+        return res.next
+
+
+
+
+
+
+
 # @lc code=end
 

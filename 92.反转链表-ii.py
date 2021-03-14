@@ -13,21 +13,37 @@
 
 class Solution:
     def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
-        if head ==None:
-            return 
-        if m ==n:
-            return head        
-        stack = []
-        first = ListNode(0)
-        while head:
-            stack.append(head.val)
-            head = head.next
-        stack[m-1:n] = reversed(stack[m-1:n])
-        res = first
-        while stack:
-            first.next = ListNode(stack.pop(0))
-            first = first.next
-        return res.next
+
+        if not head and not head.next:
+            return head
+
+        headNode = ListNode(0)
+        headNode.next = head
+
+
+        pre = headNode
+        alt = pre.next
+
+        while m > 1:
+            pre = pre.next
+            alt = alt.next
+            n -= 1
+            m -= 1
+        m_alt, m_pre = alt, pre
+        while n:
+            n -= 1
+            tmp = alt.next
+            alt.next = pre
+            pre = alt
+            alt = tmp
+
+        m_pre.next = pre
+        m_alt.next = alt
+        return headNode.next
+
+
+
+
 
 # @lc code=end
 

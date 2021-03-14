@@ -15,33 +15,34 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        if not head:
-            return None
-        
-        res = ListNode(0)
-        res.next = None
-        tmp = res
-        nodeList = []
+        if head == None or head.next == None:
+            return
 
-        while head:
-            nodeList.append(head)
-            head = head.next
-        
+        pre = head
+        lat = head.next
+        while lat != None and lat.next != None:
+            pre = pre.next
+            lat = lat.next.next
 
-        listLen = len(nodeList)
-        left = 1
-        right = listLen - 1
-        while right <= left:
-            nodeList[right], nodeList[left] = nodeList[left], nodeList[right]
-            right -= 1
-            left += 1
-        while nodeList:
-            tmp = nodeList.pop(0)
-            t = ListNode(0)
-            t.next = None
-            tmp.next = t
-            tmp = tmp.next
-        return res.next
+        p = pre.next
+        pre.next = None
+        # reverse
+        
+        cur = None        
+        while p != None:
+            q = p.next
+            p.next = cur
+            cur = p 
+            p = q
+               
+        pre = head
+        while pre != None and cur != None:
+            tmp = cur.next  
+            cur.next = pre.next
+            pre.next = cur
+            pre = pre.next.next
+            cur = tmp
+
 
 
 

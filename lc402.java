@@ -1,29 +1,38 @@
 package LC;
 
-import java.util.ArrayList;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
+//给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。
+// 单调栈 + 贪心
 public class lc402 {
     public String removeKdigits(String num, int k) {
-        if(num.length()==0||num.length()<=k)
-            return "0";
-        char[] strStack =new char[num.length()];
-        int newLength=num.length()-k;
-        int top=0;
-        for(int i=0;i<num.length();i++){
-            char c=num.charAt(i);
-            while(top>0&&strStack[top-1]>c&&k>0){
-                top--;
+//        int remain = num.length() - k;
+        Deque<Character> deque = new LinkedList<Character>();
+        int l = num.length();
+        for(int i=0; i<l; i++){
+            char data = num.charAt(i);
+            while (!deque.isEmpty() && deque.peekLast()>data && k>0){
+                deque.pollLast();
                 k--;
             }
-            strStack[top++]=c;
+            deque.offerLast(data);
         }
-        int index=0;
-        while(index<newLength&&strStack[index]=='0')
-            index++;
-        return index==newLength?"0":new String(strStack,index,newLength-index);
+        for (int i = 0; i < k; ++i) {
+            deque.pollLast();
+        }
+
+        StringBuilder ret = new StringBuilder();
+        boolean leadingZero = true;  // 前面的0
+        while (!deque.isEmpty()) {
+            char digit = deque.pollFirst();
+            if (leadingZero && digit == '0') {
+                continue;
+            }
+            leadingZero = false;
+            ret.append(digit);
+        }
+        return ret.length() == 0 ? "0" : ret.toString();
+
     }
-
 }
-
-

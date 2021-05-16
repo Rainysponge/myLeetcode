@@ -1,11 +1,11 @@
 package LC;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class lc12 {
     public String intToRoman(int num) {
         StringBuilder res = new StringBuilder();
-        Deque<String> stack = new LinkedList<>();
         Map<Integer, String> dic = new HashMap<>();
         dic.put(4, "IV");  dic.put(500, "D");
         dic.put(9, "IX");  dic.put(100, "C");
@@ -53,10 +53,6 @@ public class lc12 {
             num /= 10;
             d++;  // 位数
         }
-
-//        res.h
-
         return res.toString();
-
     }
 }

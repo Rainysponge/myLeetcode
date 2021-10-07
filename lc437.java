@@ -1,32 +1,67 @@
 package LC;
-import dataStructure.TreeNode;
+
+import com.sun.source.tree.Tree;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class lc437 {
-    int count = 0;
-    long[] val = new long[3]; // [leftVal, rightVal, val]
+    int res = 0;
     public int pathSum(TreeNode root, int targetSum) {
-        Map<Integer, Integer> dic = new HashMap<>();
-        // 存节点的前缀和
-        preorder(root, 0, dic, targetSum);
-
-
-
-        return count;
+        // 后序遍历 哈希
+        postOrder(root,targetSum);
+        return res;
     }
 
-    public void preorder(TreeNode root, int curSum, Map<Integer, Integer> dic, int targetSum){
-        // 前序遍历
-        if(root == null) return;
-        curSum += root.val;
-        count += dic.getOrDefault(curSum-targetSum, 0);
-        dic.put(curSum, dic.getOrDefault(curSum-targetSum, 0) + 1);
+    Map<Integer, Integer> postOrder(TreeNode root, int targetSum){
+        Map<Integer, Integer> resMap = new HashMap<>();
+        if(root == null){
 
-        preorder(root.left, curSum, dic, targetSum);
-        preorder(root.right, curSum, dic, targetSum);
-        dic.put(curSum, dic.get(curSum) -1);
+            return resMap;
+        }
+
+        Map<Integer, Integer> leftMap = postOrder(root.left, targetSum);
+        Map<Integer, Integer> rightMap = postOrder(root.right, targetSum);
+
+        for(Map.Entry<Integer, Integer> entry: rightMap.entrySet()){
+            leftMap.put(entry.getKey(), leftMap.getOrDefault(entry.getKey(), 0) + entry.getValue());
+        }
+
+        // leftMap.putAll(rightMap);
+
+
+        leftMap.put(0, leftMap.getOrDefault(0, 0) + 1);
+
+        for(Map.Entry entry : leftMap.entrySet()){
+            int num = (int)entry.getKey();
+
+            resMap.put(num + root.val,
+                    leftMap.get(num));
+
+
+        }
+        if(resMap.containsKey(targetSum)){
+            System.out.println(root.val);
+            res += resMap.get(targetSum);
+        }
+
+
+        return resMap;
+
     }
 
+}
+
+
+class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
 }

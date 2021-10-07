@@ -1,21 +1,21 @@
 package LC;
 
 public class lc223 {
-    public int countDigitOne(int n) {
-        //int countr = 0;
-        //    for (long long i = 1; i <= n; i *= 10) {
-        //        long long divider = i * 10;
-        //        countr += (n / divider) * i + min(max(n % divider - i + 1, 0LL), i);
-        //    }
-        //    return countr;
+    public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+        int repeat = 0;
+        int i = Math.min(bx2, ax2) - Math.max(bx1, ax1);
+        int j = Math.min(ay2, by2) - Math.max(ay1, by1);
+        if(i > 0 && j > 0){
 
-        int res = 0;
-        for(int i = 1; i<=n; i*=10){
-            int d = i*10;
-            res += (n/d)*i + Math.min(Math.max(n % d -i +1, 0), i);
+            repeat = i * j;
         }
 
+        //S_first_square = (D - B) * (C - A)
+        //        S_second_square = (H - F) * (G - E)
+        int a = (ay2 - ay1)  * (ax2 - ax1);
+        int b = (by2 - by1)  * (bx2 - bx1);
 
-        return res;
+        return  a + b - repeat;
+
     }
 }
